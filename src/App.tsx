@@ -1,8 +1,9 @@
 import * as React from "react"
+import { getChatter } from "./services/dataService"
 
 interface IProps {}
 interface IState {
-	readonly header: string
+	readonly heading: string
 	readonly detail: string
 }
 
@@ -11,24 +12,25 @@ class App extends React.Component<IProps, IState> {
 		super(props)
 
 		this.state = {
-			header: "",
+			heading: "",
 			detail: ""
 		}
 	}
 
 	public async componentDidMount(): Promise<void> {
-		const response = await fetch("localhost:3000/chatter")
-		const { header, detail } = await response.json()
+		const res = await getChatter()
+		const { heading, detail } = res.data
 
-		this.setState({ header, detail })
+		this.setState({ heading, detail })
 	}
 
 	public render(): JSX.Element {
-		const { header, detail } = this.state
+		const { heading, detail } = this.state
 
 		return (
 			<div style={{ height: "100%" }}>
-				<div>{header}</div>
+				<div>Random Chatter</div>
+				<div>{heading}</div>
 				<div>{detail}</div>
 			</div>
 		)
