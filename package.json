@@ -6,6 +6,7 @@
 		"axios": "^0.18.0",
 		"react": "^16.8.2",
 		"react-dom": "^16.8.2",
+		"react-jss": "^8.6.1",
 		"react-scripts": "2.1.5"
 	},
 	"scripts": {
@@ -26,6 +27,7 @@
 	"devDependencies": {
 		"@types/react": "^16.8.3",
 		"@types/react-dom": "^16.8.2",
+		"@types/react-jss": "^8.6.2",
 		"typescript": "^3.3.3"
 	}
 }
