@@ -6,6 +6,7 @@ import Chatter from "./Chatter/Chatter"
 import { styles } from "./styles"
 import { IProps } from "./__types/IProps"
 import { IState } from "./__types/IState"
+import { Theme } from "../../theme"
 
 class DashboardComponent extends React.Component<IProps, IState> {
 	public constructor(props: IProps) {
@@ -15,17 +16,18 @@ class DashboardComponent extends React.Component<IProps, IState> {
 			title: "",
 			description: "",
 			source: "",
+			progress: 0,
 			error: "",
 			requestState: API.REQUEST_PENDING
 		}
 
-		this.chatterUpdater = this.chatterUpdater.bind(this)
+		this.timer = this.timer.bind(this)
 	}
 
 	public async componentDidMount(): Promise<void> {
 		await this.chatterUpdater()
 
-		setInterval(this.chatterUpdater, 30000)
+		setInterval(this.timer, 1000)
 	}
 
 	private async chatterUpdater() {
@@ -38,9 +40,25 @@ class DashboardComponent extends React.Component<IProps, IState> {
 		}
 	}
 
+	private async timer() {
+		const { progress } = this.state
+
+		const desiredUpdateCycle = 120
+		const totalProgress = 100
+		const tick = totalProgress / desiredUpdateCycle
+
+		this.setState({
+			progress: progress >= 100 ? 0 : progress + tick
+		})
+
+		if (progress >= 100) {
+			await this.chatterUpdater()
+		}
+	}
+
 	public render(): JSX.Element {
 		const { classes } = this.props
-		const { title, description, source, requestState } = this.state
+		const { title, description, source, progress, requestState } = this.state
 
 		return (
 			<div className={classes.container}>
@@ -50,6 +68,15 @@ class DashboardComponent extends React.Component<IProps, IState> {
 					description={description}
 					source={source}
 					requestState={requestState}
+				/>
+
+				<div
+					className={classes.progress}
+					style={{
+						background: `linear-gradient(to right, ${
+							Theme.primary
+						} ${progress}%, transparent 1%)`
+					}}
 				/>
 			</div>
 		)
