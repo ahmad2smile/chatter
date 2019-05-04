@@ -8,6 +8,10 @@ const ApiSuspense = ({ apiState, children }: IProps) => {
 		return <Loader />
 	}
 
+	if (apiState === API.REQUEST_ERROR) {
+		return <div>Something went wrong! Please try again later.</div>
+	}
+
 	return <>{children}</>
 }
 

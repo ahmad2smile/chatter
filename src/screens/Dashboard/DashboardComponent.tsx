@@ -12,20 +12,27 @@ class DashboardComponent extends React.Component<IProps, IState> {
 		super(props)
 
 		this.state = {
-			heading: "",
-			detail: "",
+			title: "",
+			description: "",
 			source: "",
 			error: "",
 			requestState: API.REQUEST_PENDING
 		}
+
+		this.chatterUpdater = this.chatterUpdater.bind(this)
 	}
 
 	public async componentDidMount(): Promise<void> {
+		await this.chatterUpdater()
+
+		setInterval(this.chatterUpdater, 30000)
+	}
+
+	private async chatterUpdater() {
 		try {
 			const res = await getChatter()
-			const { heading, detail, source } = res.data
-
-			this.setState({ heading, detail, source, requestState: API.REQUEST_SUCCESS })
+			const { title, description, source } = res.data
+			this.setState({ title, description, source, requestState: API.REQUEST_SUCCESS })
 		} catch (e) {
 			this.setState({ error: e, requestState: API.REQUEST_ERROR })
 		}
@@ -33,12 +40,17 @@ class DashboardComponent extends React.Component<IProps, IState> {
 
 	public render(): JSX.Element {
 		const { classes } = this.props
-		const { heading, detail, source, requestState } = this.state
+		const { title, description, source, requestState } = this.state
 
 		return (
 			<div className={classes.container}>
 				<div className={classes.header}>Random Chatter</div>
-				<Chatter heading={heading} detail={detail} source={source} requestState={requestState} />
+				<Chatter
+					title={title}
+					description={description}
+					source={source}
+					requestState={requestState}
+				/>
 			</div>
 		)
 	}

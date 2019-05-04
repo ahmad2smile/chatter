@@ -2,11 +2,11 @@ import { Styles } from "react-jss"
 
 export const styles: Styles = {
 	container: {},
-	heading: {
+	title: {
 		fontSize: 28,
 		fontWeight: 500
 	},
-	detail: {
+	description: {
 		margin: "15px 0"
 	},
 	source: {

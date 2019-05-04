@@ -5,17 +5,19 @@ import Card from "../../../components/Card/Card"
 import { styles } from "./styles"
 import { IProps } from "./__types/IProps"
 
-const Chatter = ({ heading, detail, source, requestState, classes }: IProps) => {
+const Chatter = ({ title, description, source, requestState, classes }: IProps) => {
 	return (
 		<Card>
 			<ApiSuspense apiState={requestState}>
-				<div className={classes.heading}>{heading}</div>
-				<div className={classes.detail}>{detail}</div>
-				<div className={classes.source}>
-					<a href={source} target="_blank">
-						Source
-					</a>
-				</div>
+				<div className={classes.title}>{title}</div>
+				<div className={classes.description}>{description}</div>
+				{!!source && (
+					<div className={classes.source}>
+						<a href={source} target="_blank">
+							Source
+						</a>
+					</div>
+				)}
 			</ApiSuspense>
 		</Card>
 	)

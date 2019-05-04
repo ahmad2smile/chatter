@@ -2,8 +2,7 @@
 
 import axios, { AxiosPromise } from "axios"
 
-export const appBaseUrl =
-	process.env.NODE_ENV !== "production" ? "http://localhost:3000" : "https://random-chatter.azurewebsites.net/"
+export const appBaseUrl = "https://chatter-api.azurewebsites.net/api/"
 
 const api = axios.create({
 	baseURL: appBaseUrl,
