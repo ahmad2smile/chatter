@@ -3,6 +3,7 @@ import injectSheet from "react-jss"
 
 import { API } from "../../conduits/models"
 import { Colors } from "../../conduits/theme"
+import { Title } from "../../conduits/components"
 
 import { getChatter } from "../../services/dataService"
 
@@ -66,22 +67,24 @@ class DashboardComponent extends React.Component<IProps, IState> {
 		const { title, description, source, progress, requestState } = this.state
 
 		return (
-			<div className={classes.container}>
-				<div className={classes.header}>Random Chatter</div>
-				<Chatter
-					title={title}
-					description={description}
-					source={source}
-					requestState={requestState}
-				/>
+			<Title title="Random Chatter">
+				<div className={classes.container}>
+					<div className={classes.header}>Random Chatter</div>
+					<Chatter
+						title={title}
+						description={description}
+						source={source}
+						requestState={requestState}
+					/>
 
-				<div
-					className={classes.progress}
-					style={{
-						background: `linear-gradient(to right, ${Colors.primary} ${progress}%, transparent 1%)`
-					}}
-				/>
-			</div>
+					<div
+						className={classes.progress}
+						style={{
+							background: `linear-gradient(to right, ${Colors.primary} ${progress}%, transparent 1%)`
+						}}
+					/>
+				</div>
+			</Title>
 		)
 	}
 }
