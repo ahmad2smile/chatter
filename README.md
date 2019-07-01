@@ -4,28 +4,9 @@
 
 Chatter App for random News from the internet with Web Scrapping using React.
 
-## Installation
+## Usage
 
-```bash
-$ npm install
-```
-
-## Running the app
-
-```bash
-# development
-$ npm run start
-
-# production mode
-$ npm run build
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-```
+This is a [React Platform](https://github.com/ahmad2smile/react-platform) based App.
 
 ## Stay in touch
 

@@ -1,0 +1,17 @@
+{
+    "sizes": {
+        "container": 1100
+    },
+    "theme": {
+        "primary": "#fdbb6d",
+        "secondary": "#475c7b"
+    },
+    "api": {
+        "production": {
+            "baseUrl": "https://chatter-api.azurewebsites.net/api/"
+        },
+        "development": {
+            "baseUrl": "https://chatter-api.azurewebsites.net/api/"
+        }
+    }
+}
